@@ -37,5 +37,5 @@ public class Course {
 	public void setType(String type) { this.type = type; }
 	public int getNbCustomersMax() { return nbCustomersMax; }
 	public void setNbCustomersMax(int nbCustomersMax) { this.nbCustomersMax = nbCustomersMax; }
-	
+
 }
