@@ -1,4 +1,4 @@
-package model;
+package ecole.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,12 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
 public class Teacher {
 
 	@Id
@@ -24,5 +19,12 @@ public class Teacher {
 	
 	@Column(name = "LAST_NAME")
 	private String lastName;
+
+	public int getTeacherId() { return teacherId; }
+	public void setTeacherId(int teacherId) { this.teacherId = teacherId; }
+	public String getFirstName() { return firstName; }
+	public void setFirstName(String firstName) { this.firstName = firstName; }
+	public String getLastName() { return lastName; }
+	public void setLastName(String lastName) { this.lastName = lastName; }
 	
 }
