@@ -1,4 +1,4 @@
-package model;
+package webstationapi.Entity;
 
 import java.sql.Date;
 
