@@ -19,6 +19,9 @@ public class Course {
 	
 	@Column(name = "TYPE")
 	private String type;
+	
+	@Column(name = "MAX_NB_OF_CUSTOMERS")
+	private int nbCustomersMax;
 
 	public int getCourseId() { return courseId; }
 	public void setCourseId(int courseId) { this.courseId = courseId; }
@@ -26,5 +29,7 @@ public class Course {
 	public void setDescription(String description) { this.description = description; }
 	public String getType() { return type; }
 	public void setType(String type) { this.type = type; }
+	public int getNbCustomersMax() { return nbCustomersMax; }
+	public void setNbCustomersMax(int nbCustomersMax) { this.nbCustomersMax = nbCustomersMax; }
 
 }

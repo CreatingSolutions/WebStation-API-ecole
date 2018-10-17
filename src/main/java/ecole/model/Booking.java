@@ -41,10 +41,7 @@ public class Booking {
 	@Column(name = "LEVEL")
 	private int level;
 
-	public int getBookingId() {
-		return bookingId;
-	}
-
+	public int getBookingId() { return bookingId; }
 	public void setBookingId(int bookingId) { this.bookingId = bookingId; }
 	public int getUserId() { return userId; }
 	public void setUserId(int userId) { this.userId = userId; }
