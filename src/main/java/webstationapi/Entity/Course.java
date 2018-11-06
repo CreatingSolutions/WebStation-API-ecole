@@ -21,7 +21,7 @@ public class Course {
 	
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	@Column(name = "TYPE")
 	private String type;
 	
