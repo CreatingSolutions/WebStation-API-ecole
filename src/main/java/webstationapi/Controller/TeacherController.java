@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import webstationapi.Utils;
@@ -13,13 +14,14 @@ import webstationapi.Entity.Teacher;
 import webstationapi.Service.TeacherService;
 
 @RestController
+@RequestMapping(path = "/teacher")
 @EnableAutoConfiguration
 public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
 
-    @GetMapping("/teachers")
+    @GetMapping("/")
     public List<Teacher> getTeachers() {
         return teacherService.findAll();
     }
