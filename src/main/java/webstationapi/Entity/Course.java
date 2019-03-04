@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -29,7 +30,6 @@ public class Course {
 	
 	@Column(name = "MAX_NB_OF_CUSTOMERS")
 	private int nbCustomersMax;
-
 
 	public int getCourseId() { return courseId; }
 	public void setCourseId(int courseId) { this.courseId = courseId; }

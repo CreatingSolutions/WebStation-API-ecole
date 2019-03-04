@@ -47,5 +47,8 @@ public class Booking {
 	
 	@Column(name = "LEVEL")
 	private int level;
+	
+	public int getBookingId() { return bookingId; }
+	public Course getCourse() { return course; }
 
 }
