@@ -45,9 +45,8 @@ public class Booking {
 	@Column(name = "STARTING_HOUR")
 	private int startingHour;
 	
-	@Column(name = "LEVEL")
-	private int level;
-	
+	public int getUserId() { return userId; }
+	public void setUserId(int userId) { this.userId = userId; }
 	public int getBookingId() { return bookingId; }
 	public Course getCourse() { return course; }
 
