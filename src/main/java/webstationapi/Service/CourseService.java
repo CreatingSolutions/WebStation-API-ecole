@@ -1,9 +1,8 @@
 package webstationapi.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -28,8 +27,11 @@ public class CourseService {
 		List<Booking> bookings = StreamSupport.stream(bookingRepository.findAll().spliterator(), false).collect(Collectors.toList());
 		Map<Integer, Long> sumByCourse = bookings.stream().map(booking -> booking.getCourse()).collect(Collectors.groupingBy(Course::getCourseId, Collectors.counting()));
 		
-		List<Course> result = new ArrayList<Course>();
-		return StreamSupport.stream(courseRepository.findAll().spliterator(), false).filter(course -> course.getNbCustomersMax() > sumByCourse.get(course)).collect(Collectors.toList());
+		return StreamSupport.stream(courseRepository.findAll().spliterator(), false).filter(course -> course.getNbCustomersMax() > sumByCourse.get(course.getCourseId())).collect(Collectors.toList());
+	}
+	
+	public Optional<Course> getCourseById(int courseId) {
+		return courseRepository.findById(courseId);
 	}
 	
 }

@@ -1,7 +1,5 @@
 package webstationapi.Entity;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,25 +27,14 @@ public class Booking {
 	private int userId;
 	
 	@OneToOne
-	@JoinColumn(name = "TEACHER_ID")
-	private Teacher teacher;
-	
-	@OneToOne
 	@JoinColumn(name = "COURSE_ID")
 	private Course course;
 	
-	@Column(name = "PRICE")
-	private int price;
-	
-	@Column(name = "DATE")
-	private Date date;
-	
-	@Column(name = "STARTING_HOUR")
-	private int startingHour;
-	
+	public int getBookingId() { return bookingId; }
+	public void setBookingId(int bookingId) { this.bookingId = bookingId; }
 	public int getUserId() { return userId; }
 	public void setUserId(int userId) { this.userId = userId; }
-	public int getBookingId() { return bookingId; }
 	public Course getCourse() { return course; }
-
+	public void setCourse(Course course) { this.course = course; }
+	
 }
