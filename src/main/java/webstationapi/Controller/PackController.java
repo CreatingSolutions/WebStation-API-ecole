@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import webstationapi.Entity.Pack;
+import webstationapi.DTO.PackDTO;
 import webstationapi.Service.PackService;
 
 @RestController
@@ -20,7 +20,7 @@ public class PackController {
 	private PackService packService;
 	
 	@GetMapping("/")
-	public List<Pack> getAllPacks() {
+	public List<PackDTO> getAllPacks() {
 		return packService.getAllPacks();
 	}
 

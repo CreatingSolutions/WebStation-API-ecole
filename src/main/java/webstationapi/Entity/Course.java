@@ -29,8 +29,8 @@ public class Course {
 	@Column(name = "LEVEL")
 	private int level;
 	
-	@Column(name = "MAX_NB_OF_CUSTOMERS")
-	private int nbCustomersMax;
+	@Column(name = "MAX_SLOTS")
+	private int maxSlots;
 	
 	@Column(name = "DATE")
 	private Date date;
@@ -57,8 +57,8 @@ public class Course {
 	public void setType(String type) { this.type = type; }
 	public int getLevel() { return level; }
 	public void setLevel(int level) { this.level = level; }
-	public int getNbCustomersMax() { return nbCustomersMax; }
-	public void setNbCustomersMax(int nbCustomersMax) { this.nbCustomersMax = nbCustomersMax; }
+	public int getMaxSlots() { return maxSlots; }
+	public void setMaxSlots(int maxSlots) { this.maxSlots = maxSlots; }
 	public Date getDate() { return date; }
 	public void setDate(Date date) { this.date = date; }
 	public int getStartingHour() { return startingHour; }

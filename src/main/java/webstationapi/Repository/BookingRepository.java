@@ -11,4 +11,6 @@ public interface BookingRepository extends CrudRepository<Booking, Integer> {
 	
 	public List<Booking> findByCourseIn(List<Course> course);
 	
+	public Long countByCourse(Course course);
+	
 }

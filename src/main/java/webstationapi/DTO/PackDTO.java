@@ -3,6 +3,7 @@ package webstationapi.DTO;
 import java.util.Map;
 
 import webstationapi.Entity.DayMoment;
+import webstationapi.Entity.Pack;
 import webstationapi.Entity.Period;
 
 public class PackDTO {
@@ -12,6 +13,13 @@ public class PackDTO {
 	private Map<DayMoment, Integer> tickets;
 	private double price;
 	private boolean available;
+	
+	public PackDTO(Pack pack) {
+		this.packId = pack.getPackId();
+		this.period = pack.getPeriod();
+		this.tickets = pack.getTickets();
+		this.price = pack.getPrice();
+	}
 	
 	public int getPackId() { return packId; }
 	public void setPackId(int packId) { this.packId = packId; }

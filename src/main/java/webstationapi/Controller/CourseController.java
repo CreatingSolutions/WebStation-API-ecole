@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import webstationapi.Entity.Course;
+import webstationapi.DTO.CourseDTO;
 import webstationapi.Entity.DayMoment;
 import webstationapi.Service.CourseService;
 
@@ -22,13 +22,8 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@GetMapping("/available/courses")
-    public List<Course> getAvailableCourses(@RequestParam int periodId, @RequestParam DayMoment moment) {
-    	return courseService.getAvailableCourses(periodId, moment);
-    }
-	
-	@GetMapping("/available/count")
-    public int countAvailableCourseSlots(@RequestParam int periodId, @RequestParam DayMoment moment) {
-    	return courseService.countAvailableCourseSlots(periodId, moment);
+    public List<CourseDTO> getAvailableCourses(@RequestParam int periodId, @RequestParam DayMoment moment) {
+    	return courseService.getCourses(periodId, moment);
     }
 	
 }

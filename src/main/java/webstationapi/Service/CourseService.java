@@ -10,6 +10,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import webstationapi.DTO.CourseDTO;
 import webstationapi.Entity.Booking;
 import webstationapi.Entity.Course;
 import webstationapi.Entity.DayMoment;
@@ -31,14 +32,18 @@ public class CourseService {
 	@Autowired
 	private PeriodRepository periodRepository;
 	
-	public List<Course> getAvailableCourses(int periodId, DayMoment moment) {
+	public List<CourseDTO> getCourses(int periodId, DayMoment moment) {
 		Period period = periodRepository.findById(periodId).orElseThrow(IllegalArgumentException::new);
 		List<Course> courses = courseRepository.findByPeriodAndMoment(period, moment);
 		
 		List<Booking> bookings = StreamSupport.stream(bookingRepository.findByCourseIn(courses).spliterator(), false).collect(Collectors.toList());
 		Map<Integer, Long> sumByCourse = bookings.stream().map(booking -> booking.getCourse()).collect(Collectors.groupingBy(Course::getCourseId, Collectors.counting()));
 		
-		return courses.stream().filter(course -> course.getNbCustomersMax() > sumByCourse.get(course.getCourseId())).collect(Collectors.toList());
+		return courses.stream().map(course -> { 
+			CourseDTO dto = new CourseDTO(course);
+			dto.setOccupiedSlots(sumByCourse.get(course.getCourseId()).intValue());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 	
 	public int countAvailableCourseSlots(int periodId, DayMoment moment) {
