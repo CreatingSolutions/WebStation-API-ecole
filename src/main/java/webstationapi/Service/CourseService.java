@@ -1,5 +1,6 @@
 package webstationapi.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Service;
 
 import webstationapi.Entity.Booking;
 import webstationapi.Entity.Course;
+import webstationapi.Entity.DayMoment;
+import webstationapi.Entity.Pack;
+import webstationapi.Entity.Period;
 import webstationapi.Repository.BookingRepository;
 import webstationapi.Repository.CourseRepository;
+import webstationapi.Repository.PeriodRepository;
 
 @Service
 public class CourseService {
@@ -21,17 +26,31 @@ public class CourseService {
 	private CourseRepository courseRepository;
 	
 	@Autowired
-	private BookingRepository bookingRepository;	
+	private BookingRepository bookingRepository;
 	
-	public List<Course> getAvailableCourses() {
-		List<Booking> bookings = StreamSupport.stream(bookingRepository.findAll().spliterator(), false).collect(Collectors.toList());
+	@Autowired
+	private PeriodRepository periodRepository;
+	
+	public List<Course> getAvailableCourses(int periodId, DayMoment moment) {
+		Period period = periodRepository.findById(periodId).orElseThrow(IllegalArgumentException::new);
+		List<Course> courses = courseRepository.findByPeriodAndMoment(period, moment);
+		
+		List<Booking> bookings = StreamSupport.stream(bookingRepository.findByCourseIn(courses).spliterator(), false).collect(Collectors.toList());
 		Map<Integer, Long> sumByCourse = bookings.stream().map(booking -> booking.getCourse()).collect(Collectors.groupingBy(Course::getCourseId, Collectors.counting()));
 		
-		return StreamSupport.stream(courseRepository.findAll().spliterator(), false).filter(course -> course.getNbCustomersMax() > sumByCourse.get(course.getCourseId())).collect(Collectors.toList());
+		return courses.stream().filter(course -> course.getNbCustomersMax() > sumByCourse.get(course.getCourseId())).collect(Collectors.toList());
+	}
+	
+	public int countAvailableCourseSlots(int periodId, DayMoment moment) {
+		return 1;
 	}
 	
 	public Optional<Course> getCourseById(int courseId) {
 		return courseRepository.findById(courseId);
+	}
+	
+	public List<Course> getCourseByPack(Pack pack) {
+		return new ArrayList<Course>();
 	}
 	
 }

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import webstationapi.Utils;
-import webstationapi.Entity.DayMoment;
 import webstationapi.Entity.Period;
 import webstationapi.Service.PeriodService;
 
@@ -31,28 +30,19 @@ public class PeriodController {
 		int periodId = Utils.getIdFromString(id);
 		return periodService.getPeriodById(periodId).orElseThrow(InternalError::new);
 	}
-	
-	@GetMapping("/")
-	public Period getPeriodById(@RequestParam DayMoment moment, @RequestParam Date startDate, 
-			@RequestParam Date endDate) {
-		return periodService.getPeriodByMomentAndByDates(moment, startDate, endDate).orElseThrow(InternalError::new);
-	}
 
 	@PostMapping(path = "/create")
-	public void createPeriod(@RequestParam DayMoment moment, @RequestParam Date startDate, 
-			@RequestParam Date endDate, @RequestParam double price) {
+	public void createPeriod(@RequestParam Date startDate, @RequestParam Date endDate) {
 		Period period = new Period();
-		period.setMoment(moment);
 		period.setStartDate(startDate);
 		period.setEndDate(endDate);
-		period.setPrice(price);
 		periodService.createPeriod(period);
 	}
 	
 	@PatchMapping(path = "/update/{id}")
-	public void updatePeriod(@PathVariable(value="id") String periodId, @RequestParam DayMoment moment, 
-			@RequestParam Date startDate, @RequestParam Date endDate, @RequestParam double price) {
-		periodService.updatePeriod(Utils.getIdFromString(periodId), moment, startDate, endDate, price);
+	public void updatePeriod(@PathVariable(value="id") String periodId, 
+			@RequestParam Date startDate, @RequestParam Date endDate) {
+		periodService.updatePeriod(Utils.getIdFromString(periodId), startDate, endDate);
 	}
 	
 	@DeleteMapping(path = "/delete/{id}")

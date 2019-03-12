@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import webstationapi.Entity.Course;
+import webstationapi.Entity.DayMoment;
 import webstationapi.Service.CourseService;
 
 @RestController
@@ -19,9 +21,14 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	@GetMapping("/available")
-    public List<Course> getAvailableCourses() {
-    	return courseService.getAvailableCourses();
+	@GetMapping("/available/courses")
+    public List<Course> getAvailableCourses(@RequestParam int periodId, @RequestParam DayMoment moment) {
+    	return courseService.getAvailableCourses(periodId, moment);
+    }
+	
+	@GetMapping("/available/count")
+    public int countAvailableCourseSlots(@RequestParam int periodId, @RequestParam DayMoment moment) {
+    	return courseService.countAvailableCourseSlots(periodId, moment);
     }
 	
 }
