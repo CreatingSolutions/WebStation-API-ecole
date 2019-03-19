@@ -11,7 +11,7 @@ public class CourseDTO {
 	private int courseId;
 	private String description;
 	private String type;
-	private int level;
+	private String level;
 	private int maxSlots;
 	private int occupiedSlots;
 	private Date date;
@@ -40,8 +40,8 @@ public class CourseDTO {
 	public void setDescription(String description) { this.description = description; }
 	public String getType() { return type; }
 	public void setType(String type) { this.type = type; }
-	public int getLevel() { return level; }
-	public void setLevel(int level) { this.level = level; }
+	public String getLevel() { return level; }
+	public void setLevel(String level) { this.level = level; }
 	public int getMaxSlots() { return maxSlots; }
 	public void setMaxSlots(int maxSlots) { this.maxSlots = maxSlots; }
 	public int getOccupiedSlots() { return occupiedSlots; }

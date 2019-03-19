@@ -27,7 +27,7 @@ public class Course {
 	private String type;
 	
 	@Column(name = "LEVEL")
-	private int level;
+	private String level;
 	
 	@Column(name = "MAX_SLOTS")
 	private int maxSlots;
@@ -45,6 +45,9 @@ public class Course {
 	@JoinColumn(name = "PERIOD_ID")
 	private Period period;
 	
+	@Column(name = "MOMENT")
+	private DayMoment moment;
+	
 	@ManyToOne
 	@JoinColumn(name = "TEACHER_ID")
 	private Teacher teacher;
@@ -55,8 +58,8 @@ public class Course {
 	public void setDescription(String description) { this.description = description; }
 	public String getType() { return type; }
 	public void setType(String type) { this.type = type; }
-	public int getLevel() { return level; }
-	public void setLevel(int level) { this.level = level; }
+	public String getLevel() { return level; }
+	public void setLevel(String level) { this.level = level; }
 	public int getMaxSlots() { return maxSlots; }
 	public void setMaxSlots(int maxSlots) { this.maxSlots = maxSlots; }
 	public Date getDate() { return date; }
@@ -67,6 +70,8 @@ public class Course {
 	public void setEndingHour(int endingHour) { this.endingHour = endingHour; }
 	public Period getPeriod() { return period; }
 	public void setPeriod(Period period) { this.period = period; }
+	public DayMoment getMoment() { return moment; }
+	public void setMoment(DayMoment moment) { this.moment = moment; }
 	public Teacher getTeacher() { return teacher; }
 	public void setTeacher(Teacher teacher) { this.teacher = teacher; }
 
