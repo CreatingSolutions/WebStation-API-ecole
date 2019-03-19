@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import webstationapi.Utils;
@@ -35,6 +37,11 @@ public class TeacherController {
     @GetMapping("/name/{name}")
     public List<Teacher> getTeacherByName(@PathVariable(value="name") String name) {
     	return teacherService.findByName(name);
+    }
+    
+    @PostMapping(path = "/create")
+    public void createTeacher(@RequestParam String firstName, @RequestParam String lastName) {
+    	teacherService.createTeacher(firstName, lastName);
     }
 
 }

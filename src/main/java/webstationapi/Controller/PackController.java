@@ -23,5 +23,7 @@ public class PackController {
 	public List<PackDTO> getAllPacks() {
 		return packService.getAllPacks();
 	}
+	
+	
 
 }
