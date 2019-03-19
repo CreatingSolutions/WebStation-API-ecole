@@ -5,7 +5,6 @@ public enum DayMoment {
 	MORNING,
 	NOON,
 	AFTERNOON,
-	EVENING,
-	ALL
+	EVENING
 	
 }

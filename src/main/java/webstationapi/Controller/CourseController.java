@@ -21,7 +21,7 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	@GetMapping("/available")
+	@GetMapping("/available/courses")
     public List<CourseDTO> getAvailableCourses(@RequestParam int periodId, @RequestParam DayMoment moment) {
     	return courseService.getCourses(periodId, moment);
     }

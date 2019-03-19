@@ -28,16 +28,9 @@ public class TeacherService {
 	}
 	
 	@Transactional
-	public List<Teacher> findByName(String lastName) {
-		return repository.findByLastNameIsLike(lastName);
-	}
-	
-	@Transactional
-	public void createTeacher(String firstName, String lastName) {
-		Teacher teacher = new Teacher();
-		teacher.setFirstName(firstName);
-		teacher.setLastName(lastName);
-		repository.save(teacher);
+	public List<Teacher> findByName(String name) {
+		/* TODO : Optimize later into a named call to the repository using Spring convention */
+		return StreamSupport.stream(repository.findAll().spliterator(), false).filter(teacher -> teacher.getFirstName().contains(name) || teacher.getLastName().contains(name)).collect(Collectors.toList());
 	}
 	
 }
