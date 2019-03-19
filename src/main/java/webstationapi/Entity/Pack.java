@@ -37,9 +37,6 @@ public class Pack {
 	@Column(name = "MOMENT")
 	private DayMoment moment;
 	
-	@Column(name = "AGE")
-	private Age age;
-	
 	@Column(name = "PRICE")
 	private double price;
 	
@@ -51,8 +48,6 @@ public class Pack {
 	public void setTickets(Map<DayMoment, Integer> tickets) { this.tickets = tickets; }
 	public DayMoment getMoment() { return moment; }
 	public void setMoment(DayMoment moment) { this.moment = moment; }
-	public Age getAge() { return age; }
-	public void setAge(Age age) { this.age = age; }
 	public double getPrice() { return price; }
 	public void setPrice(double price) { this.price = price; }
 	
