@@ -17,13 +17,25 @@ public class PackService {
 
 	@Autowired
 	private PackRepository packRepository;
-	
+
 	@Autowired
 	private CourseRepository courseRepository;
-	
+
 	@Autowired
 	private BookingRepository bookingRepository;
-	
+
+	public void setPackRepository(PackRepository repository) {
+		this.packRepository = repository;
+	}
+
+	public void setCourseRepository(CourseRepository repository) {
+		this.courseRepository = repository;
+	}
+
+	public void setBookingRepository(BookingRepository repository) {
+		this.bookingRepository = repository;
+	}
+
 	public List<PackDTO> getAllPacks() {
 		//TODO : Gérer l'appel au CourseRepository le stream pour ne faire qu'un seul appel
 		return StreamSupport.stream(packRepository.findAll().spliterator(), false).map(pack -> {
@@ -35,5 +47,5 @@ public class PackService {
 			return dto;
 		}).collect(Collectors.toList());
 	}
-	
+
 }
